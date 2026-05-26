@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Avishai Kolet — Hardware Design Engineer. B.Sc. Electrical Engineering (Bar-Ilan University). Specializing in VLSI, FPGA, RTL-to-GDSII, and digital/analog design.">
+  <title>Avishai Kolet | Hardware Design Engineer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="css/style.css">
+  <script>
+    // Tailwind configuration for elegant professional theme
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            'sans': ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif']
+          },
+          colors: {
+            accent: '#14b8a6'
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-zinc-950 text-zinc-200 antialiased">
+
+  <!-- Fixed Navigation -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-zinc-950/95 backdrop-blur-md border-b border-zinc-800">
+    <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+      <!-- Brand -->
+      <a href="#" class="font-semibold text-xl tracking-tight text-white">Avishai Kolet</a>
+
+      <!-- Desktop Navigation -->
+      <div class="hidden md:flex items-center gap-8 text-sm font-medium">
+        <a href="#summary" class="nav-link hover:text-accent transition-colors">Summary</a>
+        <a href="#experience" class="nav-link hover:text-accent transition-colors">Experience</a>
+        <a href="#projects" class="nav-link hover:text-accent transition-colors">Projects</a>
+        <a href="#education" class="nav-link hover:text-accent transition-colors">Education</a>
+        <a href="#skills" class="nav-link hover:text-accent transition-colors">Skills</a>
+        <a href="#additional" class="nav-link hover:text-accent transition-colors">Additional</a>
+      </div>
+
+      <!-- Desktop Actions -->
+      <div class="hidden md:flex items-center gap-3">
+        <!-- Theme Toggle -->
+        <button data-theme-toggle
+                class="p-2 rounded-lg border border-zinc-800 hover:bg-zinc-900 transition-colors"
+                aria-label="Toggle dark/light theme">
+          <span id="theme-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+            </svg>
+          </span>
+        </button>
+
+        <!-- Print -->
+        <button id="print-btn"
+                class="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg border border-zinc-800 hover:bg-zinc-900 transition-colors no-print">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H3a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2z" />
+          </svg>
+          Print
+        </button>
+
+        <!-- Download Original PDF -->
+        <a href="Avishai_Kolet_resume.pdf" download
+           class="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-lg bg-accent text-zinc-950 hover:bg-teal-300 transition-colors no-print">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v-4m0 0l4 4m-4-4l4-4m8 8v-4m0 0l4 4m-4-4l4-4" />
+          </svg>
+          Download PDF
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button id="mobile-menu-toggle"
+              class="md:hidden p-2 rounded-lg border border-zinc-800 hover:bg-zinc-900 transition-colors"
+              aria-label="Open menu" aria-expanded="false">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden border-t border-zinc-800 bg-zinc-950">
+      <div class="px-6 py-4 flex flex-col gap-1 text-sm">
+        <a href="#summary" class="py-2 px-3 rounded hover:bg-zinc-900 transition-colors">Summary</a>
+        <a href="#experience" class="py-2 px-3 rounded hover:bg-zinc-900 transition-colors">Experience</a>
+        <a href="#projects" class="py-2 px-3 rounded hover:bg-zinc-900 transition-colors">Projects</a>
+        <a href="#education" class="py-2 px-3 rounded hover:bg-zinc-900 transition-colors">Education</a>
+        <a href="#skills" class="py-2 px-3 rounded hover:bg-zinc-900 transition-colors">Skills</a>
+        <a href="#additional" class="py-2 px-3 rounded hover:bg-zinc-900 transition-colors">Additional</a>
+
+        <div class="h-px bg-zinc-800 my-2"></div>
+
+        <div class="flex items-center gap-3 pt-1">
+          <button data-theme-toggle class="flex-1 flex items-center justify-center gap-2 py-2 rounded-lg border border-zinc-800 hover:bg-zinc-900 transition-colors text-sm">
+            <span id="theme-icon-mobile"></span>
+            <span>Toggle Theme</span>
+          </button>
+          <button id="print-btn-mobile" onclick="window.print()" 
+                  class="flex-1 py-2 rounded-lg border border-zinc-800 hover:bg-zinc-900 transition-colors text-sm">Print</button>
+        </div>
+
+        <a href="Avishai_Kolet_resume.pdf" download
+           class="mt-2 inline-flex items-center justify-center gap-2 py-2.5 rounded-lg bg-accent text-zinc-950 font-semibold text-sm">
+          Download Original PDF
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero / Header -->
+  <header class="pt-20 pb-12 px-6 max-w-6xl mx-auto">
+    <div class="flex flex-col items-center text-center">
+      <!-- Initials avatar -->
+      <div class="w-20 h-20 rounded-full bg-gradient-to-br from-accent/30 to-teal-900 flex items-center justify-center ring-1 ring-accent/40 mb-6">
+        <span class="text-4xl font-semibold tracking-tighter text-white">AK</span>
+      </div>
+
+      <h1 class="hero-name text-6xl md:text-7xl font-semibold tracking-tighter text-white mb-3">Avishai Kolet</h1>
+      <p class="text-2xl text-zinc-400 font-light tracking-tight mb-2">Hardware Design Engineer</p>
+      <p class="text-lg text-zinc-500 max-w-md">B.Sc. Electrical Engineering • Bar-Ilan University</p>
+
+      <!-- Quick facts -->
+      <div class="flex flex-wrap justify-center gap-2 mt-5 mb-8">
+        <span class="hero-fact px-3 py-1 text-sm rounded-full">GPA 83.07</span>
+        <span class="hero-fact px-3 py-1 text-sm rounded-full">VLSI &amp; Electro-Optics</span>
+        <span class="hero-fact px-3 py-1 text-sm rounded-full">FPGA • ASIC • RTL-to-GDSII</span>
+      </div>
+
+      <!-- Contact row with copy buttons -->
+      <div class="contact-row flex flex-wrap items-center justify-center gap-x-8 gap-y-4 text-sm">
+        <!-- Phone -->
+        <div class="flex items-center gap-2 text-zinc-300">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2 3 3 0 013 3v1a2 2 0 01-2 2 15 15 0 01-5 1 15 15 0 01-5-1 2 2 0 01-2-2V6a3 3 0 013-3 2 2 0 012 2" />
+          </svg>
+          <a href="tel:052-5611384" class="hover:text-white transition-colors">052-5611384</a>
+          <button id="copy-phone" class="copy-btn p-1 rounded hover:bg-zinc-800" aria-label="Copy phone number">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8 16v-4m4 4v4m4-8v8m4-4v-4m-16 8h16a2 2 0 002-2V6a2 2 0 00-2-2H4a2 2 0 00-2 2v12a2 2 0 002 2" />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Email -->
+        <div class="flex items-center gap-2 text-zinc-300">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2.25 2.25 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2" />
+          </svg>
+          <a href="mailto:koletavi@gmail.com" class="hover:text-white transition-colors">koletavi@gmail.com</a>
+          <button id="copy-email" class="copy-btn p-1 rounded hover:bg-zinc-800" aria-label="Copy email address">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8 16v-4m4 4v4m4-8v8m4-4v-4m-16 8h16a2 2 0 002-2V6a2 2 0 00-2-2H4a2 2 0 00-2 2v12a2 2 0 002 2" />
+            </svg>
+          </button>
+        </div>
+
+        <!-- LinkedIn -->
+        <div class="flex items-center gap-2 text-zinc-300">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-accent" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.064 0-1.14.92-2.064 2.063-2.064 1.14 0 2.064.925 2.064 2.064 0 1.139-.925 2.064-2.064 2.064zM6.934 20.452H3.737V9h3.197v11.452z"/>
+          </svg>
+          <a href="https://www.linkedin.com/in/avishai-kolet" target="_blank" rel="noopener noreferrer"
+             class="hover:text-white transition-colors">linkedin.com/in/avishai-kolet</a>
+          <button id="copy-linkedin" class="copy-btn p-1 rounded hover:bg-zinc-800" aria-label="Copy LinkedIn URL">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8 16v-4m4 4v4m4-8v8m4-4v-4m-16 8h16a2 2 0 002-2V6a2 2 0 00-2-2H4a2 2 0 00-2 2v12a2 2 0 002 2" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-6 pb-20 space-y-16">
+
+    <!-- Professional Summary -->
+    <section id="summary" class="section">
+      <h2 class="text-xs font-semibold tracking-[2px] uppercase text-accent mb-3">Professional Summary</h2>
+      <div class="prose prose-invert max-w-none text-[15.5px] leading-relaxed text-zinc-300">
+        <p>B.Sc. Electrical Engineering graduate with strong foundations in digital/analog design and VLSI. Gained extensive hands-on experience in advanced VLSI and FPGA labs while mentoring students as a private tutor. Fast learner with proven debugging skills, clear technical communication, and a passion for turning complex designs into working silicon.</p>
+      </div>
+    </section>
+
+    <!-- Experience -->
+    <section id="experience" class="section">
+      <h2 class="text-xs font-semibold tracking-[2px] uppercase text-accent mb-4">Experience</h2>
+      
+      <div class="timeline pl-8">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="card bg-zinc-900 border border-zinc-800 rounded-2xl p-6">
+            <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-x-4 mb-3">
+              <div>
+                <h3 class="font-semibold text-lg">SoC Design for Hardware Reliability</h3>
+                <p class="text-zinc-400">Bar-Ilan University • Undergraduate Lab</p>
+              </div>
+              <div class="text-sm text-zinc-500 font-mono whitespace-nowrap mt-1 sm:mt-0">2024 – 2025</div>
+            </div>
+
+            <p class="text-zinc-300 mb-4">Designed a Hardware reliability data acquisition system for an undergraduate lab.</p>
+
+            <ul class="space-y-2 text-sm text-zinc-300">
+              <li class="flex gap-2"><span class="text-accent mt-1">•</span> Designed an overlay using Verilog on PYNQ-Z2 board based on the Zynq-7020 FPGA, using Vivado design suite.</li>
+              <li class="flex gap-2"><span class="text-accent mt-1">•</span> Created a system to automate reliability test runs based on Python scripts, remotely control and monitor a SP540 oven controller, and running Jupyter notebooks from the PYNQ board.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects & Initiatives -->
+    <section id="projects" class="section">
+      <h2 class="text-xs font-semibold tracking-[2px] uppercase text-accent mb-4">Projects &amp; Initiatives</h2>
+      <div class="grid md:grid-cols-2 gap-4">
+        
+        <!-- Private Tutor -->
+        <div class="card bg-zinc-900 border border-zinc-800 rounded-2xl p-5">
+          <div class="flex justify-between items-start mb-1">
+            <h3 class="font-semibold">Private Tutor</h3>
+            <span class="text-xs text-zinc-500 font-mono">2013 – 2025</span>
+          </div>
+          <p class="text-sm text-zinc-400">Undergraduate and high school level courses</p>
+        </div>
+
+        <!-- CPUgarage -->
+        <div class="card bg-zinc-900 border border-zinc-800 rounded-2xl p-5">
+          <div class="flex justify-between items-start mb-1">
+            <h3 class="font-semibold">Intel CPUgarage</h3>
+            <span class="text-xs text-zinc-500 font-mono">2023</span>
+          </div>
+          <p class="text-sm text-zinc-300">Learned hardware coding of a simple retro game using Verilog on de10-lite Altera based FPGA.</p>
+        </div>
+
+        <!-- NeuroHack -->
+        <div class="card bg-zinc-900 border border-zinc-800 rounded-2xl p-5">
+          <div class="flex justify-between items-start mb-1">
+            <h3 class="font-semibold">NeuroHack</h3>
+            <span class="text-xs text-zinc-500 font-mono">2023</span>
+          </div>
+          <p class="text-sm text-zinc-300">Programmed a PTSD treatment mobile game using Unity.</p>
+        </div>
+
+        <!-- Hackathon -->
+        <div class="card bg-zinc-900 border border-zinc-800 rounded-2xl p-5">
+          <div class="flex justify-between items-start mb-1">
+            <h3 class="font-semibold">Hackathon — Flowrate Estimator</h3>
+            <span class="text-xs text-zinc-500 font-mono">2022</span>
+          </div>
+          <p class="text-sm text-zinc-300">Built a flowrate estimator using Arduino.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section id="education" class="section">
+      <h2 class="text-xs font-semibold tracking-[2px] uppercase text-accent mb-4">Education</h2>
+      
+      <div class="card bg-zinc-900 border border-zinc-800 rounded-2xl p-6">
+        <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-x-4">
+          <div>
+            <h3 class="font-semibold text-xl">B.Sc. Electrical Engineering</h3>
+            <p class="text-zinc-400">Bar-Ilan University • Graduated 2025 • GPA 83.07</p>
+          </div>
+        </div>
+
+        <div class="mt-4 grid sm:grid-cols-2 gap-x-8 gap-y-2 text-sm">
+          <div>
+            <span class="block text-xs uppercase tracking-widest text-accent mb-1">Major 1</span>
+            <span class="text-zinc-200">Nanoelectronics and VLSI</span>
+          </div>
+          <div>
+            <span class="block text-xs uppercase tracking-widest text-accent mb-1">Major 2</span>
+            <span class="text-zinc-200">Electro-Optics</span>
+          </div>
+        </div>
+
+        <div class="mt-5 pt-4 border-t border-zinc-800">
+          <span class="block text-xs uppercase tracking-widest text-accent mb-2">Final Project</span>
+          <p class="text-sm text-zinc-300">Design of efficient configurable systolic array processing element for Machine Learning using Verilog and the university provided development suites and technologies.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Technical Skills -->
+    <section id="skills" class="section">
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4">
+        <h2 class="text-xs font-semibold tracking-[2px] uppercase text-accent">Technical Skills</h2>
+        
+        <!-- Filter controls -->
+        <div class="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+          <input id="skills-filter" type="text" placeholder="Filter skills (e.g. Verilog, Python, Cadence...)"
+                 class="w-full sm:w-72 bg-zinc-900 border border-zinc-800 text-sm placeholder:text-zinc-500 rounded-xl px-4 py-2 focus:outline-none focus:border-accent/60">
+          
+          <div class="flex flex-wrap gap-1.5 text-xs">
+            <span data-category="Digital" class="filter-chip px-3 py-1 rounded-full bg-zinc-900 border border-zinc-800 hover:border-accent/60 transition-colors">Digital</span>
+            <span data-category="Cadence" class="filter-chip px-3 py-1 rounded-full bg-zinc-900 border border-zinc-800 hover:border-accent/60 transition-colors">Cadence</span>
+            <span data-category="FPGA" class="filter-chip px-3 py-1 rounded-full bg-zinc-900 border border-zinc-800 hover:border-accent/60 transition-colors">FPGA</span>
+            <span data-category="Programming" class="filter-chip px-3 py-1 rounded-full bg-zinc-900 border border-zinc-800 hover:border-accent/60 transition-colors">Programming</span>
+            <span data-category="Simulation" class="filter-chip px-3 py-1 rounded-full bg-zinc-900 border border-zinc-800 hover:border-accent/60 transition-colors">Simulation</span>
+            <span data-category="Other" class="filter-chip px-3 py-1 rounded-full bg-zinc-900 border border-zinc-800 hover:border-accent/60 transition-colors">Other</span>
+          </div>
+        </div>
+      </div>
+
+      <div id="skills-grid" class="grid md:grid-cols-2 gap-4">
+        <!-- Digital Design & Verification -->
+        <div class="card bg-zinc-900 border border-zinc-800 rounded-2xl p-5">
+          <h4 class="font-medium mb-3 text-sm tracking-wide text-zinc-400">Digital Design &amp; Verification</h4>
+          <div class="flex flex-wrap gap-1.5">
+            <span class="skill-pill px-3 py-1 text-xs rounded-full bg-zinc-800 border border-zinc-700" data-group="Digital">SystemVerilog</span>
+            <span class="skill-pill px-3 py-1 text-xs rounded-full bg-zinc-800 border border-zinc-700" data-group="Digital">Verilog</span>
+            <span class="skill-pill px-3 py-1 text-xs rounded-full bg-zinc-800 border border-zinc-700" data-group="Digital">ModelSim</span>
+          </div>
+        </div>
+
+        <!-- RTL-to-GDSII & Cadence -->
+        <div class="card bg-zinc-900 border border-zinc-800 rounded-2xl p-5">
+          <h4 class="font-medium mb-3 text-sm tracking-wide text-zinc-400">RTL-to-GDSII Flow &amp; Cadence Tools</h4>
+          <div class="flex flex-wrap gap-1.5">
+            <span class="skill-pill px-3 py-1 text-xs rounded-full bg-zinc-800 border border-zinc-700" data-group="Cadence">Genus (Synthesis)</span>
+            <span class="skill-pill px-3 py-1 text-xs rounded-full bg-zinc-800 border border-zinc-700" data-group="Cadence">Innovus (Place &amp; Route)</span>
+            <span class="skill-pill px-3 py-1 text-xs rounded-full bg-zinc-800 border border-zinc-700" data-group="Cadence">Voltus (Power)</span>
+            <span class="skill-pill px-3 py-1 text-xs rounded-full bg-zinc-800 border border-zinc-700" data-group="Cadence">Virtuoso (Custom Layout)</span>
+            <span class="skill-pill px-3 py-1 text-xs rounded-full bg-zinc-800 border border-zinc-700" data-group="Cadence">PVS</span>
+            <span class="skill-pill px-3 py-1 text-xs rounded-full bg-zinc-800 border border-zinc-700" data-group="Cadence">Quantus</span>
+          </div>
+        </div>
+
+        <!-- FPGA -->
+        <div class="card bg-zinc-900 border border-zinc-800 rounded-2xl p-5">
+          <h4 class="font-medium mb-3 text-sm tracking-wide text-zinc-400">FPGA Prototyping &amp; Tools</h4>
+          <div class="flex flex-wrap gap-1.5">
+            <span class="skill-pill px-3 py-1 text-xs rounded-full bg-zinc-800 border border-zinc-700" data-group="FPGA">Xilinx Vivado</span>
+            <span class="skill-pill px-3 py-1 text-xs rounded-full bg-zinc-800 border border-zinc-700" data-group="FPGA">Intel Quartus Prime</span>
+          </div>
+        </div>
+
+        <!-- Programming -->
+        <div class="card bg-zinc-900 border border-zinc-800 rounded-2xl p-5">
+          <h4 class="font-medium mb-3 text-sm tracking-wide text-zinc-400">Programming &amp; Scripting</h4>
+          <div class="flex flex-wrap gap-1.5">
+            <span class="skill-pill px-3 py-1 text-xs rounded-full bg-zinc-800 border border-zinc-700" data-group="Programming">C/C++</span>
+            <span class="skill-pill px-3 py-1 text-xs rounded-full bg-zinc-800 border border-zinc-700" data-group="Programming">Python</span>
+            <span class="skill-pill px-3 py-1 text-xs rounded-full bg-zinc-800 border border-zinc-700" data-group="Programming">Tcl</span>
+            <span class="skill-pill px-3 py-1 text-xs rounded-full bg-zinc-800 border border-zinc-700" data-group="Programming">Bash</span>
+          </div>
+        </div>
+
+        <!-- Simulation & Analog -->
+        <div class="card bg-zinc-900 border border-zinc-800 rounded-2xl p-5">
+          <h4 class="font-medium mb-3 text-sm tracking-wide text-zinc-400">Simulation &amp; Analog/Mixed-Signal</h4>
+          <div class="flex flex-wrap gap-1.5">
+            <span class="skill-pill px-3 py-1 text-xs rounded-full bg-zinc-800 border border-zinc-700" data-group="Simulation">Spectre</span>
+            <span class="skill-pill px-3 py-1 text-xs rounded-full bg-zinc-800 border border-zinc-700" data-group="Simulation">Xcelium</span>
+            <span class="skill-pill px-3 py-1 text-xs rounded-full bg-zinc-800 border border-zinc-700" data-group="Simulation">SimVision</span>
+            <span class="skill-pill px-3 py-1 text-xs rounded-full bg-zinc-800 border border-zinc-700" data-group="Simulation">MATLAB/Simulink</span>
+          </div>
+        </div>
+
+        <!-- Other -->
+        <div class="card bg-zinc-900 border border-zinc-800 rounded-2xl p-5">
+          <h4 class="font-medium mb-3 text-sm tracking-wide text-zinc-400">Other</h4>
+          <div class="flex flex-wrap gap-1.5">
+            <span class="skill-pill px-3 py-1 text-xs rounded-full bg-zinc-800 border border-zinc-700" data-group="Other">Git</span>
+            <span class="skill-pill px-3 py-1 text-xs rounded-full bg-zinc-800 border border-zinc-700" data-group="Other">Linux</span>
+            <span class="skill-pill px-3 py-1 text-xs rounded-full bg-zinc-800 border border-zinc-700" data-group="Other">Static Timing Analysis</span>
+            <span class="skill-pill px-3 py-1 text-xs rounded-full bg-zinc-800 border border-zinc-700" data-group="Other">DRC/LVS</span>
+          </div>
+        </div>
+      </div>
+      <p class="text-xs text-zinc-500 mt-3">Tip: Use the search box or click the category chips above to filter skills.</p>
+    </section>
+
+    <!-- Languages & Additional -->
+    <section id="additional" class="section">
+      <h2 class="text-xs font-semibold tracking-[2px] uppercase text-accent mb-4">Languages &amp; Additional Information</h2>
+      
+      <div class="grid md:grid-cols-2 gap-4">
+        <!-- Languages -->
+        <div class="card bg-zinc-900 border border-zinc-800 rounded-2xl p-5">
+          <h4 class="font-medium text-sm tracking-wide text-zinc-400 mb-3">Languages</h4>
+          <div class="space-y-1.5 text-sm">
+            <div><span class="text-zinc-200">English &amp; Hebrew</span> — Native Language</div>
+            <div><span class="text-zinc-200">Hindi &amp; Marathi</span> — Good Level</div>
+          </div>
+        </div>
+
+        <!-- Military Service -->
+        <div class="card bg-zinc-900 border border-zinc-800 rounded-2xl p-5">
+          <h4 class="font-medium text-sm tracking-wide text-zinc-400 mb-3">Military Service</h4>
+          <div class="flex items-baseline gap-2">
+            <span class="font-medium">2014 – 2017</span>
+            <span class="text-zinc-300">Served as a fighter in an Artillery battalion</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-zinc-800 py-8 text-center text-xs text-zinc-500">
+    <div class="max-w-5xl mx-auto px-6">
+      <p>Avishai Kolet • Hardware Design Engineer • <a href="Avishai_Kolet_resume.pdf" class="hover:text-accent underline decoration-zinc-700">Original PDF</a></p>
+      <p class="mt-1 text-zinc-600">Open to opportunities in VLSI, FPGA, and hardware design.</p>
+    </div>
+  </footer>
+
+  <!-- Toast Container -->
+  <div id="toast" class="hidden fixed bottom-6 left-1/2 -translate-x-1/2 items-center gap-3 bg-zinc-900 border border-zinc-700 text-sm px-5 py-3 rounded-2xl shadow-xl">
+    <span id="toast-message">Copied to clipboard</span>
+  </div>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>

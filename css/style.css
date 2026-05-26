@@ -1,0 +1,468 @@
+/* ========================================
+   Avishai Kolet — Elegant Resume Website
+   Custom styles + print optimization
+   ======================================== */
+
+/* Base theme variables (works with Tailwind dark mode) */
+:root {
+  --accent: #14b8a6; /* teal-400 */
+  --accent-dark: #0f766e;
+}
+
+/* Subtle polish for cards and sections */
+.section {
+  scroll-margin-top: 5rem;
+  position: relative;
+  /* Create a consistent left gutter so the accent line sits cleanly to the left of the text.
+     This matches the visual language of the Experience timeline. */
+  padding-left: 1.1rem;
+}
+
+/* Permanent subtle left line for every section (gray/faint by default).
+   It only lights up in teal when that section is the active tab.
+   This gives the clean "line moves to the selected tab" feeling the user wants. */
+.section::before {
+  content: '';
+  position: absolute;
+  left: 0.35rem;     /* sits in the gutter we just created */
+  top: 0.6rem;
+  bottom: 0.6rem;
+  width: 2.5px;
+  background: #3f3f46;           /* zinc-700 - faint gray line, always present */
+  opacity: 0.28;
+  border-radius: 9999px;
+  transition: background-color 0.2s ease, opacity 0.2s ease, box-shadow 0.2s ease;
+  z-index: 0;
+}
+
+/* When the section is active → line becomes the bright teal accent with soft glow.
+   No content shift — the line just changes color/emphasis. */
+html:has(.nav-link[href="#summary"].active) #summary::before,
+html:has(.nav-link[href="#projects"].active) #projects::before,
+html:has(.nav-link[href="#education"].active) #education::before,
+html:has(.nav-link[href="#skills"].active) #skills::before,
+html:has(.nav-link[href="#additional"].active) #additional::before {
+  background-color: #14b8a6;
+  opacity: 1;
+  box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.22);
+}
+
+/* Experience keeps its own internal timeline (richer treatment with the dot).
+   We suppress the generic line on Experience so we don't get two lines. */
+#experience::before {
+  display: none;
+}
+
+.card {
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+}
+
+.skill-pill {
+  transition: all 0.15s cubic-bezier(0.4, 0.0, 0.2, 1);
+  user-select: none;
+}
+
+.skill-pill:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.2);
+  background-color: #134e4b; /* darker teal on hover in dark */
+}
+
+[data-theme="light"] .skill-pill:hover {
+  background-color: #ccfbf1;
+}
+
+/* Timeline styling for Experience */
+.timeline {
+  position: relative;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0.75rem;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  /* Base state (when Experience is NOT the active tab): almost completely hidden */
+  background: transparent;
+  opacity: 0;
+}
+
+.timeline-item {
+  position: relative;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: 0.5rem;
+  top: 0.35rem;
+  width: 0.5rem;
+  height: 0.5rem;
+  background: #14b8a6;
+  border: 3px solid #18181b;
+  border-radius: 9999px;
+  z-index: 1;
+}
+
+[data-theme="light"] .timeline-dot {
+  border-color: #f4f4f5;
+}
+
+/* Skills filter */
+#skills-filter {
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+#skills-filter:focus {
+  border-color: #14b8a6;
+  box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.15);
+}
+
+/* Category filter chips */
+.filter-chip {
+  cursor: pointer;
+  transition: all 0.1s ease;
+}
+
+.filter-chip.active {
+  background-color: #14b8a6;
+  color: #18181b;
+  font-weight: 600;
+}
+
+/* Toast notification */
+#toast {
+  transition: all 0.25s cubic-bezier(0.32, 0.72, 0, 1);
+  z-index: 100;
+}
+
+/* Contact copy buttons */
+.copy-btn {
+  opacity: 0.6;
+  transition: all 0.1s ease;
+}
+
+.copy-btn:hover {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+/* Navbar active link */
+.nav-link {
+  position: relative;
+  transition: color 0.15s ease;
+}
+
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: #14b8a6;
+  border-radius: 2px;
+}
+
+/* Mobile menu */
+#mobile-menu {
+  animation: slideDown 0.2s ease forwards;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ========================================
+   LIGHT MODE — Comprehensive overrides
+   (applied when JS sets data-theme="light" on <html>)
+   ======================================== */
+[data-theme="light"] {
+  /* Base page */
+  --bg-page: #f8fafc;           /* slate-50 */
+  --bg-card: #ffffff;
+  --bg-subtle: #f1f5f9;         /* slate-100 */
+  --text-primary: #0f172a;      /* slate-900 */
+  --text-secondary: #475569;    /* slate-600 */
+  --text-muted: #64748b;        /* slate-500 */
+  --border: #e2e8f0;            /* slate-200 */
+  --accent: #0f766e;            /* teal-700 for light */
+}
+
+/* Body & page background */
+[data-theme="light"] body {
+  background-color: var(--bg-page);
+  color: var(--text-primary);
+}
+
+/* Fixed nav */
+[data-theme="light"] nav {
+  background-color: rgba(248, 250, 252, 0.95);
+  border-color: var(--border);
+}
+
+[data-theme="light"] nav a,
+[data-theme="light"] .nav-link {
+  color: var(--text-secondary);
+}
+
+[data-theme="light"] nav a:hover,
+[data-theme="light"] .nav-link:hover {
+  color: var(--accent);
+}
+
+/* Cards */
+[data-theme="light"] .card {
+  background-color: var(--bg-card);
+  border-color: var(--border);
+  box-shadow: 0 10px 15px -3px rgb(15 23 42 / 0.06), 0 4px 6px -4px rgb(15 23 42 / 0.06);
+}
+
+[data-theme="light"] .card:hover {
+  box-shadow: 0 20px 25px -5px rgb(15 23 42 / 0.08), 0 8px 10px -6px rgb(15 23 42 / 0.08);
+}
+
+/* Section headings & text */
+[data-theme="light"] h1,
+[data-theme="light"] h2,
+[data-theme="light"] h3,
+[data-theme="light"] .hero-name {
+  color: var(--text-primary) !important;
+}
+
+[data-theme="light"] .text-zinc-400,
+[data-theme="light"] .text-zinc-300,
+[data-theme="light"] .text-zinc-500 {
+  color: var(--text-secondary) !important;
+}
+
+/* Borders and subtle dividers */
+[data-theme="light"] .border-zinc-800,
+[data-theme="light"] .border-zinc-700 {
+  border-color: var(--border) !important;
+}
+
+/* Skill pills */
+[data-theme="light"] .skill-pill {
+  background-color: #f1f5f9;
+  border-color: #cbd5e1;
+  color: #334155;
+}
+
+[data-theme="light"] .skill-pill:hover {
+  background-color: #e0f2fe;
+  border-color: #67e8f9;
+  color: #0f766e;
+}
+
+/* Timeline */
+[data-theme="light"] .timeline::before {
+  background: linear-gradient(to bottom, #0f766e, #134e4b);
+}
+
+[data-theme="light"] .timeline-dot {
+  background: #0f766e;
+  border-color: #f1f5f9;
+}
+
+/* When Experience is the active section (synced with top nav underline)
+   Subtle but clear emphasis — elegant, not flashy */
+html:has(.nav-link[href="#experience"].active) .timeline::before {
+  background: linear-gradient(to bottom, #14b8a6, #14b8a6);
+  opacity: 0.9;
+}
+
+html:has(.nav-link[href="#experience"].active) .timeline-dot {
+  box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.22);
+}
+
+/* Explicit reset: when Experience is NOT the active tab, force the timeline back to normal.
+   This guarantees the line + dot "deactivate" when any other section is selected. */
+/* ========================================
+   FINAL STRONG RESET — Experience timeline must fully deactivate
+   Placed at the very end of the file for maximum cascade priority.
+   ======================================== */
+html:not(:has(.nav-link[href="#experience"].active)) .timeline::before {
+  background: #3f3f46 !important;   /* faint zinc-700 */
+  opacity: 0.35 !important;
+  box-shadow: none !important;
+}
+
+html:not(:has(.nav-link[href="#experience"].active)) .timeline-dot {
+  box-shadow: none !important;
+  background: #14b8a6 !important;
+  border-color: #18181b !important;
+}
+
+/* Form inputs & filter */
+[data-theme="light"] #skills-filter {
+  background-color: white;
+  border-color: var(--border);
+  color: var(--text-primary);
+}
+
+[data-theme="light"] #skills-filter::placeholder {
+  color: #94a3b8;
+}
+
+[data-theme="light"] .filter-chip {
+  background-color: #f1f5f9;
+  border-color: #cbd5e1;
+  color: #475569;
+}
+
+[data-theme="light"] .filter-chip.active {
+  background-color: #0f766e;
+  color: white;
+  border-color: #0f766e;
+}
+
+/* Buttons in nav / actions */
+[data-theme="light"] button.border-zinc-800,
+[data-theme="light"] a.border-zinc-800 {
+  border-color: var(--border);
+  color: var(--text-secondary);
+}
+
+[data-theme="light"] button.border-zinc-800:hover,
+[data-theme="light"] a.border-zinc-800:hover {
+  background-color: #f1f5f9;
+}
+
+/* Mobile menu */
+[data-theme="light"] #mobile-menu {
+  background-color: #f8fafc;
+  border-color: var(--border);
+}
+
+/* Footer */
+[data-theme="light"] footer {
+  border-color: var(--border);
+  color: #64748b;
+}
+
+/* Toast in light mode */
+[data-theme="light"] #toast {
+  background-color: white;
+  border-color: var(--border);
+  color: var(--text-primary);
+  box-shadow: 0 10px 15px -3px rgb(15 23 42 / 0.1);
+}
+
+/* Hero quick-fact pills (GPA, VLSI, FPGA tags above contact row) - very strong override */
+/* Hero quick-fact pills (GPA, VLSI, FPGA tags above contact row) — clean dual-theme styling */
+.hero-fact {
+  background-color: #18181b;   /* zinc-900 */
+  border: 1px solid #27272a;   /* zinc-800 */
+  color: #e4e4e7;
+  transition: all 0.1s ease;
+}
+
+.hero-fact:hover {
+  background-color: #27272a;
+  border-color: #3f3f46;
+}
+
+/* Light mode version — highly readable */
+[data-theme="light"] .hero-fact {
+  background-color: #f1f5f9;   /* slate-100 */
+  border-color: #cbd5e1;       /* slate-300 */
+  color: #334155;              /* slate-700 - good contrast */
+}
+
+[data-theme="light"] .hero-fact:hover {
+  background-color: #e0f2fe;
+  border-color: #67e8f9;
+}
+
+/* ========================================
+   PRINT STYLES — First class resume output
+   ======================================== */
+@media print {
+  @page {
+    size: A4;
+    margin: 0.6in 0.6in;
+  }
+
+  /* Hide everything non-essential */
+  nav,
+  #theme-toggle,
+  .copy-btn,
+  .no-print,
+  #toast,
+  footer {
+    display: none !important;
+  }
+
+  /* Force clean light theme for printing */
+  html, body {
+    background: white !important;
+    color: #111827 !important;
+    font-size: 10.5pt;
+    line-height: 1.45;
+  }
+
+  .section {
+    scroll-margin-top: 0;
+    break-inside: avoid;
+    margin-bottom: 1.1rem;
+  }
+
+  h1, h2, h3 {
+    color: #111827 !important;
+  }
+
+  /* Make cards and sections clean */
+  .card {
+    box-shadow: none !important;
+    border: 1px solid #e5e7eb !important;
+    background: white !important;
+    transform: none !important;
+  }
+
+  /* Skills pills */
+  .skill-pill {
+    background-color: #f3f4f6 !important;
+    color: #374151 !important;
+    border: 1px solid #d1d5db !important;
+    box-shadow: none !important;
+    transform: none !important;
+    font-size: 9pt;
+  }
+
+  /* Timeline */
+  .timeline::before,
+  .timeline-dot {
+    display: none;
+  }
+
+  /* Contact row */
+  .contact-row {
+    gap: 0.75rem;
+    font-size: 9.5pt;
+  }
+
+  /* Reduce excess whitespace */
+  .max-w-5xl {
+    max-width: 100% !important;
+  }
+
+  /* Ensure sections don't get cut awkwardly */
+  section {
+    page-break-inside: avoid;
+  }
+
+  /* Hero name */
+  .hero-name {
+    font-size: 22pt !important;
+    margin-bottom: 0.1rem;
+  }
+}

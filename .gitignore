@@ -1,0 +1,22 @@
+﻿# OS / Editor
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# IDE
+.vscode/
+.idea/
+
+# Build / temp
+node_modules/
+dist/
+build/
+*.log
+
+# Environment
+.env
+.env.local
+
+# Windows specific
+desktop.ini
