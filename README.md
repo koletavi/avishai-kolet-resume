@@ -3,7 +3,7 @@
 Elegant, modern, single-page static website that presents the data from `Avishai_Kolet_resume.pdf` in an attractive and highly usable way.
 
 **Live preview**: Open `index.html` in any browser (double-click).
-
+or go to the netify page: `https://jade-beignet-6f8148.netlify.app/`
 ## Features
 
 - Dark-first professional design (teal accents) with instant light/dark toggle (persisted)
@@ -59,7 +59,7 @@ Add a `.nojekyll` file (empty) in the root if you ever see 404 issues on assets.
 
 ### Other easy options
 
-- **Netlify Drop**: Drag the folder onto https://app.netlify.com/drop
+- **Netlify Page**: `https://jade-beignet-6f8148.netlify.app/`
 - **Vercel**: Import the folder or use the CLI
 - **Cloudflare Pages**: Connect the repo
 
