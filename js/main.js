@@ -359,6 +359,68 @@ function initPrintButton() {
   // Also support keyboard shortcut hint (Ctrl/Cmd+P is native)
 }
 
+// ==================== CONTACT REVEAL (Anti-scraping) ====================
+function initContactReveal() {
+  const btn = document.getElementById('reveal-contact-btn');
+  const details = document.getElementById('contact-details');
+
+  if (!btn || !details) return;
+
+  const phoneEl = document.getElementById('contact-phone');
+  const emailEl = document.getElementById('contact-email');
+  const linkedinEl = document.getElementById('contact-linkedin');
+
+  let isRevealed = false;
+
+  btn.addEventListener('click', () => {
+    if (!isRevealed) {
+      // Reveal: populate values from data attributes (anti-scraping)
+      const phone = btn.dataset.phone;
+      const email = btn.dataset.email;
+      const linkedin = btn.dataset.linkedin;
+
+      if (phoneEl) phoneEl.textContent = phone;
+      if (emailEl) emailEl.textContent = email;
+      if (linkedinEl) {
+        linkedinEl.textContent = 'linkedin.com/in/avishai-kolet';
+        linkedinEl.href = linkedin;
+      }
+
+      // Show the details with fade
+      details.classList.remove('hidden', 'opacity-0');
+      details.classList.add('opacity-100');
+
+      // Change button to "Hide"
+      btn.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
+        </svg>
+        Hide Contact Information
+      `;
+
+      isRevealed = true;
+
+      // Re-attach copy listeners in case (they were already attached at load, but safe)
+      // The elements existed from the start, so listeners are already there.
+    } else {
+      // Hide again
+      details.classList.add('hidden', 'opacity-0');
+      details.classList.remove('opacity-100');
+
+      // Restore original button text
+      btn.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+        </svg>
+        Show Contact Information
+      `;
+
+      isRevealed = false;
+    }
+  });
+}
+
 // ==================== INITIALIZATION ====================
 function init() {
   initTheme();
@@ -367,15 +429,13 @@ function init() {
   initSkillsFilter();
   initMobileMenu();
   initPrintButton();
+  initContactReveal();
 
   // Accessibility: announce filter usage
   const filterInput = document.getElementById('skills-filter');
   if (filterInput) {
     filterInput.setAttribute('aria-label', 'Filter technical skills by keyword');
   }
-
-  // Optional: show a very subtle welcome toast on first visit (disabled by default)
-  // setTimeout(() => showToast('Welcome — click any skill pill or filter to explore'), 4200);
 }
 
 // Boot
